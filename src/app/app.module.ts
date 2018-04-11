@@ -1,13 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterModule} from '@angular/router';
 
-import { environment } from '../environments/environment';
-import { AppComponent } from './app.component';
-import { routes } from './app.routing';
-import { API_BASE_URL } from './app.tokens';
-import { SHARED_SERVICES } from './shared/services';
+import {environment} from '../environments/environment';
+import {AppComponent} from './app.component';
+import {routes} from './app.routing';
+import {API_BASE_URL} from './app.tokens';
+import {SHARED_SERVICES} from './shared/services';
 
 @NgModule({
   declarations: [

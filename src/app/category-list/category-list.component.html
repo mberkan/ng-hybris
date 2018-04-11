@@ -2,4 +2,4 @@
   category-list works!
 </p>
 
-<div *ngFor="let c of categories$">{{c.id}}</div>
+<div *ngFor="let c of categories | async">{{c.id}}</div>
