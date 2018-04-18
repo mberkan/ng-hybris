@@ -1,3 +1,11 @@
 <p>
-  products-list works!
+products-list works!
 </p>
+
+<p>
+{{categoryId | async}}
+</p>
+
+<div *ngFor="let product of products | async">
+  <a mat-tab-link [routerLink]="['/catalog/product', product.code]">{{product.name}}</a>
+</div>

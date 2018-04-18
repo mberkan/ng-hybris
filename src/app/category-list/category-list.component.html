@@ -1,5 +1,19 @@
 <p>
-  category-list works!
+  Categories:
 </p>
 
-<div *ngFor="let c of categories | async">{{c.id}}</div>
+<div style="text-align: left;">
+<ul>
+  <ng-template #categoriesList let-categories>
+    <li *ngFor="let c of categories">
+      <a mat-tab-link [routerLink]="['/catalog/category', c.id]">{{c.name}}</a>
+
+      <ul *ngIf="c.subcategories.length > 0">
+        <ng-container *ngTemplateOutlet="categoriesList; context:{ $implicit: c.subcategories }"></ng-container>
+      </ul>
+    </li>
+  </ng-template>
+
+  <ng-container *ngTemplateOutlet="categoriesList; context:{ $implicit: categories | async }"></ng-container>
+</ul>
+</div>

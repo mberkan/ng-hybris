@@ -16,7 +16,7 @@ import {CategoryListComponent} from "./category-list/category-list.component";
   declarations: [
     AppComponent,
     HomeComponent,
-    CategoryListComponent
+    CategoryListComponent,
   ],
   imports: [
     BrowserModule,

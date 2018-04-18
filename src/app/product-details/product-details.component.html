@@ -1,3 +1,9 @@
 <p>
-  product-details works!
+{{(product | async)?.code}}
 </p>
+
+<h1>
+{{(product | async)?.name}}
+</h1>
+
+<div [innerHTML]="(product | async)?.description"></div>

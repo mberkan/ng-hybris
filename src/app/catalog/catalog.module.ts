@@ -6,8 +6,8 @@ import { ProductsListComponent } from '../products-list/products-list.component'
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 
 const routes: Route[] = [
-  { path: '', component: ProductsListComponent },
-  { path: 'product', component: ProductDetailsComponent }
+  { path: 'category/:id', component: ProductsListComponent },
+  { path: 'product/:product', component: ProductDetailsComponent }
 ];
 
 @NgModule({
@@ -15,6 +15,6 @@ const routes: Route[] = [
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CategoryListComponent, ProductsListComponent, ProductDetailsComponent]
+  declarations: [ProductsListComponent, ProductDetailsComponent]
 })
 export class CatalogModule { }
