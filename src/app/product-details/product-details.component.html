@@ -7,3 +7,7 @@
 </h1>
 
 <div [innerHTML]="(product | async)?.description"></div>
+
+<div>
+  <button (click)="addToCart()">Add to cart</button>
+</div>

@@ -1,0 +1,8 @@
+<p>
+  cart works!
+</p>
+
+<div *ngFor="let orderEntry of (cart | async)?.entries">
+  <a mat-tab-link [routerLink]="['/catalog/product', orderEntry.product.code]">{{orderEntry.product.name}}</a> - {{orderEntry.quantity}}
+  <button (click)="removeFromCart(orderEntry)">Remove from cart</button>
+</div>
