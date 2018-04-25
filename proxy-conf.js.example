@@ -1,0 +1,11 @@
+const PROXY_CONFIG = {
+  "/rest/v2/apparel-uk": {
+    target: "https://<put_your_hybris_insance_address_here/",
+    changeOrigin: true,
+    secure: false,
+    auth: "<your_htuser>:<your_htpass>",
+    logLevel: "debug"
+  }
+};
+
+module.exports = PROXY_CONFIG;
