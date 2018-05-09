@@ -5,5 +5,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:4200/rest/v2/apparel-uk'
+  apiBaseUrl: 'http://localhost:4200/rest/v2/apparel-uk',
+  authorizationServerUrl: 'http://localhost:4200/authorizationserver/oauth',
+  authorizationServerClientId: 'ng-hybris',
+  authorizationServerClientSecret: 'Kafi3atengiequee'
 };

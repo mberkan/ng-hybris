@@ -3,8 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {API_BASE_URL} from '../../app.tokens';
-import {map} from "rxjs/operators";
 import {Product} from "./category.service";
+import {UserService} from "./user.service";
 
 
 export class Cart {
@@ -29,14 +29,20 @@ export abstract class CartService {
 export class HttpCartService implements CartService {
   currentCart : Observable<Cart>;
 
-  constructor(
-    @Inject(API_BASE_URL) private baseUrl: string,
-    private http: HttpClient
-  ) {
-    this.currentCart = this.http.post<Cart>(`${this.baseUrl}/users/anonymous/carts`, null);
+  constructor(@Inject(API_BASE_URL) private baseUrl: string, private http: HttpClient, private userService: UserService) {
+    this.currentCart = this.http.post<Cart>(this.addAuthenticationParamsToURL(`users/{userID}/carts`), null);
     this.currentCart.subscribe(cart => {
       console.log("New cart: " + cart.guid);
     })
+  }
+
+  addAuthenticationParamsToURL(url : string) : string {
+    let token = this.userService.getLoggedUserToken();
+    let result = this.baseUrl + '/' + url.replace('{userID}', token != null? "current" : "anonymous");
+    if (token != null) {
+      result += '?access_token=' + token;
+    }
+    return result;
   }
 
   getCart() {
@@ -48,20 +54,20 @@ export class HttpCartService implements CartService {
     let orderEntry = new OrderEntry();
     orderEntry.product = product;
     this.currentCart.subscribe(data => {
-      this.http.post<any>(`${this.baseUrl}/users/anonymous/carts/${data.guid}/entries`, orderEntry)
+      this.http.post<any>(this.addAuthenticationParamsToURL(`users/{userID}/carts/${data.guid}/entries`), orderEntry)
         .subscribe(() => this.refreshCart(data));
     })
   }
 
   removeFromCart(entry: OrderEntry): void {
     this.currentCart.subscribe(data => {
-      this.http.delete<any>(`${this.baseUrl}/users/anonymous/carts/${data.guid}/entries/${entry.entryNumber}`)
+      this.http.delete<any>(this.addAuthenticationParamsToURL(`users/{userID}/carts/${data.guid}/entries/${entry.entryNumber}`))
         .subscribe(() => this.refreshCart(data));
     })
   }
 
   private refreshCart(data) {
-    this.currentCart = this.http.get<Cart>(`${this.baseUrl}/users/anonymous/carts/${data.guid}`);
+    this.currentCart = this.http.get<Cart>(this.addAuthenticationParamsToURL(`users/{userID}/carts/${data.guid}`));
     this.currentCart.subscribe(cart => {
       console.log("Existing cart: " + cart.guid);
     })

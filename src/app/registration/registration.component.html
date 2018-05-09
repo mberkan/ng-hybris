@@ -1,0 +1,33 @@
+<p>
+  registration works!
+</p>
+
+
+<form class="form" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+  <mat-form-field >
+    <input matInput type="text" placeholder="First name" formControlName="firstName">
+    <mat-error>First name is too short.</mat-error>
+  </mat-form-field>
+  <mat-form-field >
+    <input matInput type="text" placeholder="Last name" formControlName="lastName">
+    <mat-error>Last name is too short.</mat-error>
+  </mat-form-field>
+  <mat-form-field >
+    <input matInput type="text" placeholder="Title code" formControlName="titleCode" value="mr">
+    <mat-error>Title code is too short.</mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field >
+    <input matInput type="password" placeholder="Password" formControlName="password">
+    <mat-error>Password is too short.</mat-error>
+  </mat-form-field>
+  <mat-form-field >
+    <input matInput type="text" placeholder="Uid" formControlName="uid">
+    <mat-error>UID is too short.</mat-error>
+  </mat-form-field>
+
+  <button class="form__submit"
+          color="primary"
+          mat-raised-button>Register</button>
+</form>

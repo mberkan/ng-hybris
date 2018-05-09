@@ -13,5 +13,9 @@ export const routes: Route[] = [
   {
     path: 'cart',
     loadChildren: './cart/cart.module#CartModule'
+  },
+  {
+    path: 'registration',
+    loadChildren: './registration/registration.module#RegistrationModule'
   }
 ];

@@ -5,6 +5,13 @@ const PROXY_CONFIG = {
     secure: false,
     auth: "<your_htuser>:<your_htpass>",
     logLevel: "debug"
+  },
+  "/authorizationserver/oauth": {
+    target: "https://<put_your_hybris_insance_address_here/",
+    changeOrigin: true,
+    secure: false,
+    auth: "<your_htuser>:<your_htpass>",
+    logLevel: "debug"
   }
 };
 
