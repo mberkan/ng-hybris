@@ -6,6 +6,7 @@ import {AUTHORIZATION_SERVER_CLIENT_ID} from "../../app.tokens";
 import {AUTHORIZATION_SERVER_CLIENT_SECRET} from "../../app.tokens";
 import {Observable} from "rxjs/Observable";
 import {map,mergeMap} from "rxjs/operators";
+import {Subject} from "rxjs/Subject";
 
 export class UserSignUp {
   firstName : string;
@@ -36,13 +37,16 @@ export abstract class UserService {
   abstract retrieveTokenForRegistration() : Observable<string>;
   abstract registerUser(user : UserSignUp) : Observable<User>;
   abstract loginUser(user : UserLogin) : Observable<string>;
+  abstract logoutUser() : void;
   abstract getLoggedUserToken() : string;
+  abstract tokenSubject : Subject<string>;
 }
 
 @Injectable()
 export class HttpUserService implements UserService {
 
   token : string;
+  tokenSubject : Subject<string> = new Subject<string>();
 
   constructor(
     @Inject(API_BASE_URL) private baseUrl: string,
@@ -96,8 +100,14 @@ export class HttpUserService implements UserService {
       data => {
         console.log(`Got token for existing user`);
         this.token = data.access_token;
+        this.tokenSubject.next(this.token);
         return this.token;
       }
     ));
+  }
+
+  logoutUser() : void {
+    this.token = null;
+    this.tokenSubject.next(null);
   }
 }
