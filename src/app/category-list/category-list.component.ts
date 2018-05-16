@@ -12,19 +12,10 @@ import "rxjs/add/operator/map";
 export class CategoryListComponent implements OnInit {
   categories: Observable<Category[]>;
 
-  token: string;
-
-  constructor(private categoryService: CategoryService, private userService : UserService) {
-    this.token = '';
-  }
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.categories = this.categoryService.getAllCategories();
-    this.userService.tokenSubject.subscribe(token => this.token = token);
-  }
-
-  logout() : void {
-    this.userService.logoutUser();
   }
 }
 

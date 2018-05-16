@@ -82,6 +82,7 @@ export class HttpUserService implements UserService {
         data => {
           console.log(`Got new token ${data}`);
           this.token = data;
+          this.tokenSubject.next(this.token);
           return this.http.post<User>(`${this.baseUrl}/users?access_token=${this.token}`, user);
         }
       ))

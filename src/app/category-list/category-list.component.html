@@ -1,15 +1,3 @@
-<p>
-  <a mat-tab-link [routerLink]="['/cart']">Cart</a>
-  <a *ngIf="!token" mat-tab-link [routerLink]="['/registration']">Registration</a>
-  <a *ngIf="!token" mat-tab-link [routerLink]="['/registration/login']">Login</a>
-  <span *ngIf="token">Logged as: {{token}}</span>
-  <button *ngIf="token" (click)="logout()">Logout</button>
-</p>
-
-<p>
-  Categories:
-</p>
-
 <div style="text-align: left;">
 <ul>
   <ng-template #categoriesList let-categories>

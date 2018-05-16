@@ -4,26 +4,35 @@ import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {MatSnackBarModule } from '@angular/material';
+import {MatMenuModule, MatSnackBarModule, MatToolbarModule} from '@angular/material';
 
 import {environment} from '../environments/environment';
 import {AppComponent} from './app.component';
 import {routes} from './app.routing';
-import {API_BASE_URL, AUTHORIZATION_SERVER_URL, AUTHORIZATION_SERVER_CLIENT_ID, AUTHORIZATION_SERVER_CLIENT_SECRET} from './app.tokens';
+import {
+  API_BASE_URL,
+  AUTHORIZATION_SERVER_CLIENT_ID,
+  AUTHORIZATION_SERVER_CLIENT_SECRET,
+  AUTHORIZATION_SERVER_URL
+} from './app.tokens';
 import {SHARED_SERVICES} from './shared/services';
-import { HomeComponent } from './home/home.component';
+import {HomeComponent} from './home/home.component';
 import {CategoryListComponent} from "./category-list/category-list.component";
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CategoryListComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule, // required for ng2-tag-input
     MatSnackBarModule,
+    MatToolbarModule,
+    MatMenuModule,
     HttpClientModule,
     RouterModule.forRoot(routes,
       { enableTracing: true} ),

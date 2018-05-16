@@ -35,19 +35,14 @@ export class LoginComponent {
       this.userService.loginUser(userLogin).subscribe(data => {
           console.log("Logged: " + data);
           this.snackBar.open("Logged in", null, { duration: 5000 });
+          this.router.navigate([ '/' ]);
         },
         error => {
           console.error("Login failed:", error);
           this.snackBar.open("Login failed: " + error, null, { duration: 5000 });
         }
       )
-
-
-      // this.search.emit();
-      // this.router.navigate([ '/search' ], {
-      //   queryParams: withoutEmptyValues(this.searchForm.value)
     } else {
-      // });
       console.log("Not valid this.loginForm: " + this.loginForm);
     }
   }

@@ -37,6 +37,7 @@ export class RegistrationComponent {
       this.userService.registerUser(userSignUp).subscribe(data => {
           console.log("Registered: " + data.customerId);
           this.snackBar.open("Registered: " + data.customerId, null, { duration: 5000 });
+          this.router.navigate([ '/' ]);
         },
         error => {
           console.error("Registration failed:", error.error.errors);
